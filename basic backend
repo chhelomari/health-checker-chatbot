@@ -1,0 +1,33 @@
+import random
+import nltk
+from nltk.chat.util import Chat, reflections
+
+# Define the pairs of questions and responses
+pairs = [
+    (r'hi|hello|hey', ['Hello! How can I assist you with your health today?', 'Hi there! How can I help you today?']),
+    (r'what is your name?', ['I am HealthBot. I can help you track your health!', 'I am your Health Assistant, HealthBot!']),
+    (r'how are you?', ['I am just a bot, but thanks for asking! How are you today?', 'I am doing great, thanks! How can I help you?']),
+    (r'(.*) symptoms (.*)', ['Can you describe your symptoms in detail?', 'Tell me more about the symptoms you are experiencing.']),
+    (r'(.*) feeling tired', ['Have you been getting enough sleep? How many hours of sleep do you get on average?']),
+    (r'(.*) feeling stressed', ['Stress can affect your health. What has been stressing you out recently?']),
+    (r'(.*) exercising|workout|physical activity', ['How often do you exercise? What kind of physical activities do you enjoy?']),
+    (r'(.*) eat|eating|food', ['What do you usually eat on a typical day?', 'How is your diet? Do you eat balanced meals?']),
+    (r'(.*) drink water|hydrated', ['It’s important to stay hydrated. How much water do you drink daily?']),
+    (r'(.*) headache', ['Headaches can be caused by many things. Do you have any other symptoms?']),
+    (r'(.*) advice|help', ['I recommend staying active, eating balanced meals, and getting enough sleep. Would you like more advice?']),
+    (r'quit', ['Goodbye! Stay healthy!', 'Take care! Stay safe!'])
+]
+
+# Define the chatbot using the patterns
+class HealthBot(Chat):
+    def __init__(self, pairs, reflections):
+        super().__init__(pairs, reflections)
+
+# Initialize and run the chatbot
+def run_health_chatbot():
+    print("Hello, I'm HealthBot! I can help you track your health. Type 'quit' to end the chat.")
+    chatbot = HealthBot(pairs, reflections)
+    chatbot.converse()
+
+if __name__ == "__main__":
+    run_health_chatbot()
